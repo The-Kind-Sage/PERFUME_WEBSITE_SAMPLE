@@ -1,14 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
-
-const DATA_DIR = path.join(process.cwd(), "backend", "admin", "data");
-const DATA_FILE = path.join(DATA_DIR, "store.json");
-
-function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-
-type StoreShape = {
+/**
+ * Legacy storage layer (local JSON store).
+ * The admin backend now persists to MongoDB Atlas (see `mongo.server.ts`).
+ *
+ * This module is kept only to avoid breaking older imports during migration.
+ */
+export type StoreShape = {
   products: Array<{
     id: string;
     name: string;
@@ -18,18 +14,10 @@ type StoreShape = {
   }>;
 };
 
-function defaultStore(): StoreShape {
-  return { products: [] };
-}
-
 export function readStore(): StoreShape {
-  ensureDataDir();
-  if (!fs.existsSync(DATA_FILE)) return defaultStore();
-  const raw = fs.readFileSync(DATA_FILE, "utf-8");
-  return { ...defaultStore(), ...(JSON.parse(raw) as Partial<StoreShape>) };
+  throw new Error("Legacy local JSON storage is disabled. Use MongoDB (mongo.server.ts).");
 }
 
-export function writeStore(next: StoreShape) {
-  ensureDataDir();
-  fs.writeFileSync(DATA_FILE, JSON.stringify(next, null, 2), "utf-8");
+export function writeStore(_: StoreShape) {
+  throw new Error("Legacy local JSON storage is disabled. Use MongoDB (mongo.server.ts).");
 }
