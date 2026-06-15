@@ -1,14 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/assets/(.*)",
-      "destination": "/api/index"
-    },
-    {
-      "source": "/images/(.*)",
-      "destination": "/api/index"
-    },
-    {
       "source": "/((?!.*\\..*).*)",
       "destination": "/api/index"
     }
