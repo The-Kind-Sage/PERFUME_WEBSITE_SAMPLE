@@ -1,0 +1,11 @@
+- [x] Created `backend/` folder and admin server modules under `backend/admin/`
+- [x] Updated `.gitignore` to ignore `.env` and `.env.*`
+- [x] Added `backend/admin/auth.server.ts` (admin login + session token verification)
+- [x] Added `backend/admin/session.server.ts` (server functions: login + verify)
+- [x] Added `backend/admin/storage.server.ts` (JSON store persistence)
+- [x] Added `backend/admin/products.server.ts` (create/list products)
+- [x] Added `backend/admin/images.server.ts` (upload/list images via base64)
+- [x] Added admin UI page: `src/routes/admin.tsx` (login + products + image upload section)
+- [x] Added root `.env` template for admin credentials
+- [ ] Run `npm run dev` and verify `/admin` works end-to-end
+- [ ] If TypeScript/build issues occur, fix them and re-test
