@@ -1,0 +1,275 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* VELURA Custom Tokens */
+  --color-velura-noir: var(--velura-noir);
+  --color-velura-ivory: var(--velura-ivory);
+  --color-velura-blush: var(--velura-blush);
+  --color-velura-gold: var(--velura-gold);
+  --color-velura-rose: var(--velura-rose);
+  --color-midnight-mauve: var(--midnight-mauve);
+  --color-champagne-foam: var(--champagne-foam);
+  --color-antique-petal: var(--antique-petal);
+  --color-smoke-velvet: var(--smoke-velvet);
+  --color-burnished-copper: var(--burnished-copper);
+  --color-alabaster: var(--alabaster);
+
+  --font-display: 'Playfair Display', serif;
+  --font-heading: 'Jost', sans-serif;
+  --font-body: 'Lora', serif;
+  --font-accent: 'Cinzel', serif;
+  --font-script: 'Alex Brush', cursive;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* VELURA Light Theme */
+  --background: oklch(0.97 0.005 75);
+  --foreground: oklch(0.25 0.04 50);
+  --card: oklch(0.96 0.005 75);
+  --card-foreground: oklch(0.25 0.04 50);
+  --popover: oklch(0.97 0.005 75);
+  --popover-foreground: oklch(0.25 0.04 50);
+  --primary: oklch(0.72 0.09 85);
+  --primary-foreground: oklch(0.13 0.015 50);
+  --secondary: oklch(0.87 0.04 45);
+  --secondary-foreground: oklch(0.25 0.04 50);
+  --muted: oklch(0.90 0.04 80);
+  --muted-foreground: oklch(0.50 0.03 55);
+  --accent: oklch(0.70 0.10 55);
+  --accent-foreground: oklch(0.13 0.015 50);
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.97 0.005 75);
+  --border: oklch(0.88 0.03 75);
+  --input: oklch(0.88 0.03 75);
+  --ring: oklch(0.72 0.09 85);
+  --chart-1: oklch(0.72 0.09 85);
+  --chart-2: oklch(0.70 0.10 55);
+  --chart-3: oklch(0.40 0.10 330);
+  --chart-4: oklch(0.87 0.04 45);
+  --chart-5: oklch(0.55 0.14 55);
+  --sidebar: oklch(0.96 0.005 75);
+  --sidebar-foreground: oklch(0.25 0.04 50);
+  --sidebar-primary: oklch(0.72 0.09 85);
+  --sidebar-primary-foreground: oklch(0.13 0.015 50);
+  --sidebar-accent: oklch(0.87 0.04 45);
+  --sidebar-accent-foreground: oklch(0.25 0.04 50);
+  --sidebar-border: oklch(0.88 0.03 75);
+  --sidebar-ring: oklch(0.72 0.09 85);
+
+  /* VELURA Raw Color Tokens */
+  --velura-noir: oklch(0.13 0.015 50);
+  --velura-ivory: oklch(0.97 0.005 75);
+  --velura-blush: oklch(0.87 0.04 45);
+  --velura-gold: oklch(0.72 0.09 85);
+  --velura-rose: oklch(0.70 0.10 55);
+  --midnight-mauve: oklch(0.40 0.10 330);
+  --champagne-foam: oklch(0.90 0.04 80);
+  --antique-petal: oklch(0.65 0.08 15);
+  --smoke-velvet: oklch(0.55 0.04 320);
+  --burnished-copper: oklch(0.55 0.14 55);
+  --alabaster: oklch(0.95 0.005 75);
+}
+
+.dark {
+  --background: oklch(0.13 0.015 50);
+  --foreground: oklch(0.97 0.005 75);
+  --card: oklch(0.18 0.02 50);
+  --card-foreground: oklch(0.97 0.005 75);
+  --popover: oklch(0.18 0.02 50);
+  --popover-foreground: oklch(0.97 0.005 75);
+  --primary: oklch(0.72 0.09 85);
+  --primary-foreground: oklch(0.13 0.015 50);
+  --secondary: oklch(0.40 0.10 330);
+  --secondary-foreground: oklch(0.97 0.005 75);
+  --muted: oklch(0.25 0.03 50);
+  --muted-foreground: oklch(0.65 0.04 75);
+  --accent: oklch(0.70 0.10 55);
+  --accent-foreground: oklch(0.13 0.015 50);
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.97 0.005 75);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.09 85);
+  --chart-1: oklch(0.72 0.09 85);
+  --chart-2: oklch(0.70 0.10 55);
+  --chart-3: oklch(0.40 0.10 330);
+  --chart-4: oklch(0.87 0.04 45);
+  --chart-5: oklch(0.55 0.14 55);
+  --sidebar: oklch(0.18 0.02 50);
+  --sidebar-foreground: oklch(0.97 0.005 75);
+  --sidebar-primary: oklch(0.72 0.09 85);
+  --sidebar-primary-foreground: oklch(0.13 0.015 50);
+  --sidebar-accent: oklch(0.40 0.10 330);
+  --sidebar-accent-foreground: oklch(0.97 0.005 75);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.72 0.09 85);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .font-accent {
+    font-family: var(--font-accent);
+  }
+  .font-script {
+    font-family: var(--font-script);
+  }
+
+  .text-velura-noir {
+    color: var(--color-velura-noir);
+  }
+  .text-velura-ivory {
+    color: var(--color-velura-ivory);
+  }
+  .text-velura-blush {
+    color: var(--color-velura-blush);
+  }
+  .text-velura-gold {
+    color: var(--color-velura-gold);
+  }
+  .text-velura-rose {
+    color: var(--color-velura-rose);
+  }
+  .text-midnight-mauve {
+    color: var(--color-midnight-mauve);
+  }
+
+  .bg-velura-noir {
+    background-color: var(--color-velura-noir);
+  }
+  .bg-velura-ivory {
+    background-color: var(--color-velura-ivory);
+  }
+  .bg-velura-blush {
+    background-color: var(--color-velura-blush);
+  }
+  .bg-velura-gold {
+    background-color: var(--color-velura-gold);
+  }
+  .bg-velura-rose {
+    background-color: var(--color-velura-rose);
+  }
+
+  .tracking-hero {
+    letter-spacing: 0.25em;
+  }
+  .tracking-wide-custom {
+    letter-spacing: 0.15em;
+  }
+
+  /* Film grain texture overlay */
+  .texture-grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* Gradient backgrounds */
+  .gradient-morning-silk {
+    background: linear-gradient(135deg, var(--color-velura-ivory), var(--color-velura-blush), var(--color-velura-rose));
+  }
+  .gradient-dusk-bloom {
+    background: linear-gradient(135deg, var(--color-velura-noir), var(--color-midnight-mauve), var(--color-antique-petal));
+  }
+  .gradient-golden-hour {
+    background: linear-gradient(135deg, var(--color-velura-ivory), var(--color-champagne-foam), var(--color-velura-gold));
+  }
+  .gradient-rose-velvet {
+    background: linear-gradient(135deg, var(--color-velura-blush), var(--color-antique-petal), var(--color-midnight-mauve));
+  }
+
+  /* Smooth scrollbar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-velura-gold);
+  color: var(--color-velura-noir);
+}
