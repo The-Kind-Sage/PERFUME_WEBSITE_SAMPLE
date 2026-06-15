@@ -1,6 +1,6 @@
 import server from "../dist/server/server.js";
 
-export const config = { runtime: "nodejs20.x" };
+export const config = { runtime: "nodejs" };
 
 async function readBody(req: any): Promise<Uint8Array | null> {
   if (req.method === "GET" || req.method === "HEAD") return null;
