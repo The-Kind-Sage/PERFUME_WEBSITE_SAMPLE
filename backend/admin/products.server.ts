@@ -2,8 +2,8 @@ import crypto from "crypto";
 
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { getAdminDb } from "./mongo.server";
 
-import { readStore, writeStore } from "./storage.server";
 import { requireAdminSession } from "./auth.server";
 
 export const listProducts = createServerFn({ method: "POST" })
@@ -16,8 +16,22 @@ export const listProducts = createServerFn({ method: "POST" })
     const session = requireAdminSession(data.token);
     if (!session) throw new Error("Unauthorized");
 
-    const store = readStore();
-    return { products: store.products };
+    const db = await getAdminDb();
+    const docs = await db
+      .collection("products")
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    const products = docs.map((d) => ({
+      id: String(d.id),
+      name: String(d.name),
+      price: Number(d.price),
+      imageUrl: d.imageUrl ? String(d.imageUrl) : undefined,
+      createdAt: String(d.createdAt),
+    }));
+
+    return { products };
   });
 
 export const createProduct = createServerFn({ method: "POST" })
@@ -33,7 +47,7 @@ export const createProduct = createServerFn({ method: "POST" })
     const session = requireAdminSession(data.token);
     if (!session) throw new Error("Unauthorized");
 
-    const store = readStore();
+    const db = await getAdminDb();
     const product = {
       id: crypto.randomUUID(),
       name: data.name,
@@ -42,7 +56,7 @@ export const createProduct = createServerFn({ method: "POST" })
       createdAt: new Date().toISOString(),
     };
 
-    writeStore({ ...store, products: [product, ...store.products] });
+    await db.collection("products").insertOne(product);
 
     return { product };
   });

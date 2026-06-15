@@ -6,7 +6,7 @@ import crypto from "crypto";
 import { Buffer } from "buffer";
 
 import { requireAdminSession } from "./auth.server";
-import { readStore } from "./storage.server";
+import { getAdminDb } from "./mongo.server";
 
 const PUBLIC_IMAGES_DIR = path.join(process.cwd(), "public", "images", "admin");
 
@@ -34,10 +34,17 @@ export const listImages = createServerFn({ method: "POST" })
     const session = requireAdminSession(data.token);
     if (!session) throw new Error("Unauthorized");
 
-    // For now, derive image URLs from stored products that have imageUrl
-    // (the dedicated upload endpoint returns a URL which client should attach to products)
-    const store = readStore();
-    const images = store.products.map((p) => p.imageUrl).filter(Boolean) as string[];
+    const db = await getAdminDb();
+    const docs = await db
+      .collection("images")
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    const images = docs
+      .map((d) => (d.imageUrl ? String(d.imageUrl) : undefined))
+      .filter(Boolean) as string[];
+
     return { images };
   });
 
@@ -68,5 +75,14 @@ export const uploadImage = createServerFn({ method: "POST" })
     fs.writeFileSync(outPath, buf);
 
     const imageUrl = `/images/admin/${outFilename}`;
+
+    const db = await getAdminDb();
+    await db.collection("images").insertOne({
+      id,
+      filename: data.filename ?? null,
+      imageUrl,
+      createdAt: new Date().toISOString(),
+    });
+
     return { imageUrl };
   });

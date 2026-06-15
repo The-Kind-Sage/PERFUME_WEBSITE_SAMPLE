@@ -53,6 +53,7 @@
     "gsap": "^3.15.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
+    "mongodb": "^7.3.0",
     "react": "^19.2.0",
     "react-day-picker": "^9.14.0",
     "react-dom": "^19.2.0",
